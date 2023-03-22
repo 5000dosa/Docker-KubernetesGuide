@@ -1,0 +1,44 @@
+C:\Users\bitcamp\git\Vm\centos1>vagrant ssh
+This command requires a specific VM name to target in a multi-VM environment.
+
+C:\Users\bitcamp\git\Vm\centos1>vagrant ssh m-k8s
+[vagrant@m-k8s ~]$ ./ping_2_nds.sh
+PING 192.168.1.101 (192.168.1.101) 56(84) bytes of data.
+64 bytes from 192.168.1.101: icmp_seq=1 ttl=64 time=0.897 ms
+64 bytes from 192.168.1.101: icmp_seq=2 ttl=64 time=1.07 ms
+64 bytes from 192.168.1.101: icmp_seq=3 ttl=64 time=0.889 ms
+
+--- 192.168.1.101 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2006ms
+rtt min/avg/max/mdev = 0.889/0.954/1.077/0.090 ms
+PING 192.168.1.102 (192.168.1.102) 56(84) bytes of data.
+64 bytes from 192.168.1.102: icmp_seq=1 ttl=64 time=0.697 ms
+64 bytes from 192.168.1.102: icmp_seq=2 ttl=64 time=0.932 ms
+64 bytes from 192.168.1.102: icmp_seq=3 ttl=64 time=0.900 ms
+
+--- 192.168.1.102 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2002ms
+rtt min/avg/max/mdev = 0.697/0.843/0.932/0.104 ms
+PING 192.168.1.103 (192.168.1.103) 56(84) bytes of data.
+64 bytes from 192.168.1.103: icmp_seq=1 ttl=64 time=0.720 ms
+64 bytes from 192.168.1.103: icmp_seq=2 ttl=64 time=0.914 ms
+64 bytes from 192.168.1.103: icmp_seq=3 ttl=64 time=0.883 ms
+
+--- 192.168.1.103 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2001ms
+rtt min/avg/max/mdev = 0.720/0.839/0.914/0.085 ms
+[vagrant@m-k8s ~]$ exit
+logout
+Connection to 127.0.0.1 closed.
+
+C:\Users\bitcamp\git\Vm\centos1>vagrant destroy -f
+==> w3-k8s: Forcing shutdown of VM...
+==> w3-k8s: Destroying VM and associated drives...
+==> w2-k8s: Forcing shutdown of VM...
+==> w2-k8s: Destroying VM and associated drives...
+==> w1-k8s: Forcing shutdown of VM...
+==> w1-k8s: Destroying VM and associated drives...
+==> m-k8s: Forcing shutdown of VM...
+==> m-k8s: Destroying VM and associated drives...
+
+C:\Users\bitcamp\git\Vm\centos1>
