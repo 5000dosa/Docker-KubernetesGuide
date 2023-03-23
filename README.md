@@ -13,3 +13,17 @@ p125 3.2.5까지 따라 해보면서 느낀점은 저자가 처음부터 이 책
 pending이 떠 로드밸런서 부분 진행 불가...
 https://github.com/Azure/AKS/issues/1392 여기서 보고 고쳐볼려고했지만 포기하고 
 할수 있는 부분만 진행하고 다음단계로 진입
+
+# 2023-03-23
+로드밸런스 IP에 부여에 대해서 알아봤지만 결국에 pending은 해결하지 못한 상태에서 진행하기로 했다.
+173P kubectl edit deployment hpa-hname-pods 에서 변경이 되지 않는데 구글에서 찾아보니 
+MetalLB가 재대로 되어있지 않은걸 확인했다.
+kubectl get pods -n metallb-system -o wide로 확인 해보면 STATUS가 책에서는 Running이 되어 있지만
+ImagePullBackOff가 뜨고 심지어 
+kubectl apply -f ~/_Book_k8sInfra/ch3/3.3.4/metallb.yaml 입력하면
+모든파일들이 unchanged가 되었다는걸 이제야 확인했고 이걸 해결하기 위해서  chat GPT에게 물어보았지만
+읽어도 내가 해결을 할수는 없고 MetalLB를 사용하는 실습예제는 모두 넘어가서 쿠버네티스를 끝내기로 한다.
+이미지 파일 3장 README에 chat GPT에게 물어본 내용을 정리했다.
+
+오늘까지 쿠베네티스를 끝내고 도커를 시작했다. 쿠버네티스에서 너무 아쉬운건 로드밸런서에 IP가 보류가 뜬다는 점이다.
+만약 보류가 안떳으면 완벽하게 모든 예제를 따라했을텐데.. 아쉬움을 뒤로하고 도커를 들어가기로 했다.
