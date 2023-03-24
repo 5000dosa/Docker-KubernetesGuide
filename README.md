@@ -27,3 +27,33 @@ kubectl apply -f ~/_Book_k8sInfra/ch3/3.3.4/metallb.yaml 입력하면
 
 오늘까지 쿠베네티스를 끝내고 도커를 시작했다. 쿠버네티스에서 너무 아쉬운건 로드밸런서에 IP가 보류가 뜬다는 점이다.
 만약 보류가 안떳으면 완벽하게 모든 예제를 따라했을텐데.. 아쉬움을 뒤로하고 도커를 들어가기로 했다.
+
+# 2023-03-24
+도커는 263p 9단계에서 에러가 났다. https://raw.githubusercontent.com/sysent4admin/_Book_k8sInfra/main/ch4/4.3.4/Dockerfile
+필자가 깃허브에 올려둔 Dockerfile을 받아 와 테스트를 위한 컨테이너 이미지를 받아야 하는데
+다운로드가 되지 않는다.
+10단계에서도 docker build로 컨테이너 이미지 multistage-img를 워커 노드 3번에 빌드하고 결과가 성공적으로
+이루어졌는지 확인해야 하지만
+docker build -t multistage-img를 입력하면
+unable to prepare context: unable to evaluate symlinks in Dockerfile path: lstat /root/Dockerfile: no such file or directory
+(컨텍스트를 준비할 수 없음: 도커 파일 경로: lstat /root/Docker 파일: 해당 파일 또는 디렉토리가 없음)라는 문구가 나온다.
+당연히 구글에서 찾아보니 stackoverflow 에서 도커를 다시 설치하라는 답변이 있지만. 계속해서 에러가 나오면 그때 고쳐보자
+하는 식으로 계속진행했고 다행인 263p 9단계에서만 에러가 났고 나머지는 정상적으로 다 실습을 진행을 했다.
+
+오늘까지 도커를 끝내고 그다음 개발자들이 사랑하는 지속적통합과 배포자동화, 젠킨스를 진행하기로 한다.
+젠킨스 290p에서 LoadBalancer만 나오면 EXTERNAL-IP가 pending이 된다. 서버쪽에 문제라고 하지만 지금은 내가 해결할수 없으니 
+로드밸런스부분만 빼고 그대로 진행하기로 한다.
+
+300p 8단계에서 인자받는 명령줄인데 책에서 했던것처럼 바로 복사하면 안돼고 
+helm install metallb edu/metallb
+--namespace=metallb-system
+--create-namespace
+--set controller.tag=v0.8.3
+--set speaker.tag=v0.8.3
+--set configmap.ipRange=192.168.1.11-192.168.1.29
+
+이 명령줄들은 한줄로 만들어서 넣어야 한다.
+helm install metallb edu/metallb --namespace=metallb-system --create-namespace --set controller.tag=v0.8.3 --set speaker.tag=v0.8.3 --set configmap.ipRange=192.168.1.11-192.168.1.29 <-- 이런식으로 한다.
+
+302p 11단계에서 헬름을 통해서 MetalLB를 생성해서 LoadBalancer 타입으로 노출했을 때 드디어 IP가 정상적으로 할당댔다
+304P 2단계 미리 정의된 nfs-exporter.sh jenkins를 실행하는 부분까지 하고 오늘은 마무리 합니다.
