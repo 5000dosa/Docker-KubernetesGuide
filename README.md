@@ -1,6 +1,6 @@
 # Docker-KubernetesGuide
 
-# 2023-03-22 
+# 2023-03-22 수요일
 도커와 쿠버네티스를 공식사이트 문서를 보고 만들어 볼려고 했지만 
 처음부터 뭐 부터 해야 할지 막막해서 학원에서 준 '컨테이너 인프라 환격 구축을 위한 쿠버네티스/도커'를
 처음부터 끝까지 해보고 그 기록을 남기고자 Repositories를 만들었다.
@@ -14,7 +14,7 @@ pending이 떠 로드밸런서 부분 진행 불가...
 https://github.com/Azure/AKS/issues/1392 여기서 보고 고쳐볼려고했지만 포기하고 
 할수 있는 부분만 진행하고 다음단계로 진입
 
-# 2023-03-23
+# 2023-03-23 목요일
 로드밸런스 IP에 부여에 대해서 알아봤지만 결국에 pending은 해결하지 못한 상태에서 진행하기로 했다.
 173P kubectl edit deployment hpa-hname-pods 에서 변경이 되지 않는데 구글에서 찾아보니 
 MetalLB가 재대로 되어있지 않은걸 확인했다.
@@ -28,7 +28,7 @@ kubectl apply -f ~/_Book_k8sInfra/ch3/3.3.4/metallb.yaml 입력하면
 오늘까지 쿠베네티스를 끝내고 도커를 시작했다. 쿠버네티스에서 너무 아쉬운건 로드밸런서에 IP가 보류가 뜬다는 점이다.
 만약 보류가 안떳으면 완벽하게 모든 예제를 따라했을텐데.. 아쉬움을 뒤로하고 도커를 들어가기로 했다.
 
-# 2023-03-24
+# 2023-03-24 금요일
 도커는 263p 9단계에서 에러가 났다. https://raw.githubusercontent.com/sysent4admin/_Book_k8sInfra/main/ch4/4.3.4/Dockerfile
 필자가 깃허브에 올려둔 Dockerfile을 받아 와 테스트를 위한 컨테이너 이미지를 받아야 하는데
 다운로드가 되지 않는다.
@@ -57,3 +57,8 @@ helm install metallb edu/metallb --namespace=metallb-system --create-namespace -
 
 302p 11단계에서 헬름을 통해서 MetalLB를 생성해서 LoadBalancer 타입으로 노출했을 때 드디어 IP가 정상적으로 할당댔다
 304P 2단계 미리 정의된 nfs-exporter.sh jenkins를 실행하는 부분까지 하고 오늘은 마무리 합니다.
+
+# 2023-03-25 토요일
+5.3 젠킨스 설치 및 설정하기 챕터를 통해 처음으로 젠킨스를 설치해보고 접속해 봤다.
+처음 로그인 화면을 보자 드디어 뭔가 있어보이는걸 하는구나라는 걸 체감을 했다.
+336p까지 젠킨스 설정과 메뉴 내용을 보고 마지막으로 jenkins 서비스 어카운트를 한다음 쿠버네티스 역할 부여 구조를 확인했다.
