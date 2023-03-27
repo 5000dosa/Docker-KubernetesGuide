@@ -73,3 +73,6 @@ stackoverflow에서
 git config --global --unset credential.helper
 git config --system --unset credential.helper
 명령으로 자격증명을 비활성하라고 하지만 다시 처음부터 새로운 저장소를 만들어서 해봐야겠다.
+다행이도 정상적으로 10분마다 배포가 되는걸 확인했다.
+406p 5.5.2 19단계까지 하고 오늘은 아쉽지만 마무리 하기로 했다. github랑 연동만 잘되었으면 오늘안에 젠킨스를 끝냈을텐데.
+아쉬움은 뒤로하고 내일 마무리하겠다.
